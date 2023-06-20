@@ -1,0 +1,279 @@
+# Typescript is Javascript with syntax for types .
+# It is a programmming language made by Microsoft .
+# Typescript is only for development . We cannot use Typecript in production .
+
+//////////////////////////////////////////////////////////
+
+Why use it ===>
+# to avoid bugs in development # increase development speed
+# Additional features
+
+//////////////////////////////////////////////////////////
+
+#we can check typescipt is installed in pc like ==>
+# tsc --help
+# we have toinstall typescript in system by npm install -g typescript
+
+
+//////////////////////////////////////////////////////////
+
+# to run typscript ==>
+
+first run tsc "filename" --- it create filename.js as well
+
+than run that filename.js
+
+//////////////////////////////////////////////////////////
+
+
+# to assign data types in typescript let num: number = 3;
+
+# we can assign in parameter as well like ==>
+
+for numbers ==>
+
+function sum(x:number, y:number){}
+
+
+or for any type ==>
+
+like Type Alias
+
+type User = {
+name: string;
+age: number;
+};
+
+
+function demo(userData:User){
+return userData
+}
+
+console.log(demo({name: "Shubham",age: 28,}))
+
+
+and if we dont want function to return anything
+
+function demo(userData:User):void{}
+
+
+//////////////////////////////////////////////////////////
+
+# to assign single datatype
+
+type ID = number
+
+const userID: ID = 1234
+
+# to assign any data type
+
+function sum(x:any){} //any means simple js we can assign any type variable
+
+
+//////////////////////////////////////////////////////////
+
+# to assign more than one datatype
+
+type ID = number | string
+
+const userID: ID = 1234
+
+
+//////////////////////////////////////////////////////////
+
+
+# INTERFACE in Typescript
+
+interface User {
+username:string;
+mobile:number
+}
+
+interface BankAccount {
+number:number;
+user:User[] // here we assign User interface here
+}
+
+const User1:User={
+username:"string",
+mobile:1234
+}
+
+
+const bankAccount:BankAccount ={
+number:1234,
+user:[User1],
+}
+
+
+//////////////////////////////////////////////////////////
+
+
+# What if interface have same properties
+
+interface User {
+username:string;
+mobile:number
+}
+
+
+interface Admin {
+username:string;
+mobile:number
+}
+
+
+in both interface username is common so we can write
+
+interface Admin extends User {
+mobile:number
+}
+
+
+it automatically detects username
+
+
+//////////////////////////////////////////////////////////
+
+
+UNIONS ====>
+
+
+type ID = number | string //This are unions
+
+function sum(id:ID){
+if(typeof id === 'string'){ // To solve problem of union
+console.log(id.toUpperCase())
+}
+
+}
+
+sum("asfd")
+
+
+//////////////////////////////////////////////////////////
+
+
+GENERICS (typescript most imortant and complicated topic) ==>
+
+Generics means we can use any data type in our code but typescript should be know which datatype we are using
+
+Generics means we can pass any data withouth getting error in ts
+
+so the basic syntax of generics is
+
+ function sum<T>(x:T): T{}
+
+here we pass <T>  by this ts can know which datatype is used. We can check by hover on  sum([1,2,3,4]) 
+
+function sum<T>(x:T): T{
+  return x
+  }
+
+  sum([1,2,3,4]) 
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+TYPESCRIPT React
+
+# to install react with typescript 
+
+npx create-react-app --template typescript
+
+
+//////////////////////////////////////////////////////////
+
+
+# to give state in typescript react we can create interface and give usetate like useState<Product[]>
+
+interface Product {
+  id: number;
+  name: string;
+}
+
+
+const [products, setProducts] = useState<Product[]>([
+    {
+      id: 1,
+      name: "bob",
+    },
+    {
+      id: 2,
+      name: "shaun",
+    },
+  ]);
+
+
+
+  //////////////////////////////////////////////////////////
+
+  # to give props in typescript 
+
+  from the above we can export interface like
+
+  export interface Product {
+  id: number;
+  name: string;
+   }   //It is in parent component where we give props
+
+
+  than import it in out child component
+
+  interface ProductProps {
+  product: Product;
+}
+
+
+const ProductPage = ({ product }: ProductProps) => {}
+
+
+//////////////////////////////////////////////////////////
+
+# we have to give type in argument otherwise it will give error
+
+ const handleClick = (id: number) => {}
+
+ <button onClick={() => handleClick(product.id)}>{product.id}</button>
+
+
+ //////////////////////////////////////////////////////////
+
+ # sometimes for passing function as a props 
+
+ like in Parent.jsx
+
+   const handleClick = (id: number) => {
+    console.log(id);
+  };
+
+    <ProductPage product={products} handleClick={handleClick} />
+
+
+now in child (ProductPage.tsx)
+
+interface ProductProps {
+  product: Product;
+  handleClick(id: number): void; // we give here void because the function not returning anything
+}
+
+
+const ProductPage = ({ product, handleClick }: ProductProps) => {}
+
+and we can use that function
+
+

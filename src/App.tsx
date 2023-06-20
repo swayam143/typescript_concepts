@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import ProductPage from "./ProductPage";
+
+export interface Product {
+  id: number;
+  name: string;
+}
 
 function App() {
+  const [products, setProducts] = useState<Product[]>([
+    {
+      id: 1,
+      name: "bob",
+    },
+    {
+      id: 2,
+      name: "shaun",
+    },
+  ]);
+
+  const handleClick = (id: number) => {
+    console.log(id);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <h1>
+      {products.map((products, i) => (
+        <div key={i}>
+          <ProductPage product={products} handleClick={handleClick} />
+        </div>
+      ))}
+    </h1>
   );
 }
 
