@@ -1,4 +1,4 @@
-import { Product } from "./App";
+import { Product } from "./SimpleDemo";
 
 // Define the type of the product prop
 interface ProductProps {

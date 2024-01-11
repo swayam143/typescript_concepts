@@ -277,3 +277,30 @@ const ProductPage = ({ product, handleClick }: ProductProps) => {}
 and we can use that function
 
 
+//////////////////////////////////////////////////////////
+
+To give the type optional we can give ? 
+
+type Person = {
+  name: string;
+  age?: number;  //So we cannot get error if age is not pass
+};
+
+//////////////////////////////////////////////////////////
+
+we can give state like this 
+
+const [todo, setTodo] = useState<string | number>("");
+
+//////////////////////////////////////////////////////////
+
+
+For simple props passing==>
+
+interface Props {
+  todo:string;
+  setTodo:React.Dispatch<React.SetStateAction<string | number>> //WE get this by simply hover on setTodo
+  handleAdd: () => void;
+}
+
+const InputField = ({ todo, setTodo }:Props) => {}

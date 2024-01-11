@@ -1,37 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import ProductPage from "./ProductPage";
+import React from "react";
+import SimpleDemo from "./project/simpleDemo/SimpleDemo";
+import { Routes, Route } from "react-router-dom";
+import Todo from "./project/todo/Todo";
 
-export interface Product {
-  id: number;
-  name: string;
-}
-
-function App() {
-  const [products, setProducts] = useState<Product[]>([
-    {
-      id: 1,
-      name: "bob",
-    },
-    {
-      id: 2,
-      name: "shaun",
-    },
-  ]);
-
-  const handleClick = (id: number) => {
-    console.log(id);
-  };
-
+const App = () => {
   return (
-    <h1>
-      {products.map((products, i) => (
-        <div key={i}>
-          <ProductPage product={products} handleClick={handleClick} />
-        </div>
-      ))}
-    </h1>
+    <Routes>
+      <Route path="simpleDemo" element={<SimpleDemo />} />
+      <Route path="todo" element={<Todo />} />
+    </Routes>
   );
-}
+};
 
 export default App;
